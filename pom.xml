@@ -36,6 +36,7 @@
     </dependencies>
 
     <build>
+    <defaultGoal>clean generate-sources compile</defaultGoal>
         <extensions>
             <extension>
                 <groupId>kr.motd.maven</groupId>
@@ -64,7 +65,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 </project>

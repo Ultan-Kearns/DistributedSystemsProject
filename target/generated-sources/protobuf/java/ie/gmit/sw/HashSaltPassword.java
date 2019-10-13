@@ -80,13 +80,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return ie.gmit.sw.PasswordProto.internal_static_HashSaltPassword_descriptor;
+    return ie.gmit.sw.Password.internal_static_HashSaltPassword_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return ie.gmit.sw.PasswordProto.internal_static_HashSaltPassword_fieldAccessorTable
+    return ie.gmit.sw.Password.internal_static_HashSaltPassword_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             ie.gmit.sw.HashSaltPassword.class, ie.gmit.sw.HashSaltPassword.Builder.class);
   }
@@ -292,13 +292,13 @@ private static final long serialVersionUID = 0L;
       ie.gmit.sw.HashSaltPasswordOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ie.gmit.sw.PasswordProto.internal_static_HashSaltPassword_descriptor;
+      return ie.gmit.sw.Password.internal_static_HashSaltPassword_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ie.gmit.sw.PasswordProto.internal_static_HashSaltPassword_fieldAccessorTable
+      return ie.gmit.sw.Password.internal_static_HashSaltPassword_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               ie.gmit.sw.HashSaltPassword.class, ie.gmit.sw.HashSaltPassword.Builder.class);
     }
@@ -329,7 +329,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return ie.gmit.sw.PasswordProto.internal_static_HashSaltPassword_descriptor;
+      return ie.gmit.sw.Password.internal_static_HashSaltPassword_descriptor;
     }
 
     @java.lang.Override
