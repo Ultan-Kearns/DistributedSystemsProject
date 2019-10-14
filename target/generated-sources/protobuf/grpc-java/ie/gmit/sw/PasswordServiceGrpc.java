@@ -30,35 +30,66 @@ public final class PasswordServiceGrpc {
   public static final String SERVICE_NAME = "PasswordService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<ie.gmit.sw.HashSaltPassword,
-      ie.gmit.sw.GeneratePassword> getPasswordServiceMethod;
+  private static volatile io.grpc.MethodDescriptor<ie.gmit.sw.Hash,
+      ie.gmit.sw.HashResponse> getHashServiceMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "PasswordService",
-      requestType = ie.gmit.sw.HashSaltPassword.class,
-      responseType = ie.gmit.sw.GeneratePassword.class,
+      fullMethodName = SERVICE_NAME + '/' + "HashService",
+      requestType = ie.gmit.sw.Hash.class,
+      responseType = ie.gmit.sw.HashResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<ie.gmit.sw.HashSaltPassword,
-      ie.gmit.sw.GeneratePassword> getPasswordServiceMethod() {
-    io.grpc.MethodDescriptor<ie.gmit.sw.HashSaltPassword, ie.gmit.sw.GeneratePassword> getPasswordServiceMethod;
-    if ((getPasswordServiceMethod = PasswordServiceGrpc.getPasswordServiceMethod) == null) {
+  public static io.grpc.MethodDescriptor<ie.gmit.sw.Hash,
+      ie.gmit.sw.HashResponse> getHashServiceMethod() {
+    io.grpc.MethodDescriptor<ie.gmit.sw.Hash, ie.gmit.sw.HashResponse> getHashServiceMethod;
+    if ((getHashServiceMethod = PasswordServiceGrpc.getHashServiceMethod) == null) {
       synchronized (PasswordServiceGrpc.class) {
-        if ((getPasswordServiceMethod = PasswordServiceGrpc.getPasswordServiceMethod) == null) {
-          PasswordServiceGrpc.getPasswordServiceMethod = getPasswordServiceMethod =
-              io.grpc.MethodDescriptor.<ie.gmit.sw.HashSaltPassword, ie.gmit.sw.GeneratePassword>newBuilder()
+        if ((getHashServiceMethod = PasswordServiceGrpc.getHashServiceMethod) == null) {
+          PasswordServiceGrpc.getHashServiceMethod = getHashServiceMethod =
+              io.grpc.MethodDescriptor.<ie.gmit.sw.Hash, ie.gmit.sw.HashResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "PasswordService"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "HashService"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ie.gmit.sw.HashSaltPassword.getDefaultInstance()))
+                  ie.gmit.sw.Hash.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ie.gmit.sw.GeneratePassword.getDefaultInstance()))
-              .setSchemaDescriptor(new PasswordServiceMethodDescriptorSupplier("PasswordService"))
+                  ie.gmit.sw.HashResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PasswordServiceMethodDescriptorSupplier("HashService"))
               .build();
         }
       }
     }
-    return getPasswordServiceMethod;
+    return getHashServiceMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<ie.gmit.sw.Validate,
+      ie.gmit.sw.ValidateResponse> getValidateServiceMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "ValidateService",
+      requestType = ie.gmit.sw.Validate.class,
+      responseType = ie.gmit.sw.ValidateResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ie.gmit.sw.Validate,
+      ie.gmit.sw.ValidateResponse> getValidateServiceMethod() {
+    io.grpc.MethodDescriptor<ie.gmit.sw.Validate, ie.gmit.sw.ValidateResponse> getValidateServiceMethod;
+    if ((getValidateServiceMethod = PasswordServiceGrpc.getValidateServiceMethod) == null) {
+      synchronized (PasswordServiceGrpc.class) {
+        if ((getValidateServiceMethod = PasswordServiceGrpc.getValidateServiceMethod) == null) {
+          PasswordServiceGrpc.getValidateServiceMethod = getValidateServiceMethod =
+              io.grpc.MethodDescriptor.<ie.gmit.sw.Validate, ie.gmit.sw.ValidateResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ValidateService"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ie.gmit.sw.Validate.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ie.gmit.sw.ValidateResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new PasswordServiceMethodDescriptorSupplier("ValidateService"))
+              .build();
+        }
+      }
+    }
+    return getValidateServiceMethod;
   }
 
   /**
@@ -93,23 +124,37 @@ public final class PasswordServiceGrpc {
 
     /**
      * <pre>
-     * Sends a Password
+     * Hash and validate
      * </pre>
      */
-    public void passwordService(ie.gmit.sw.HashSaltPassword request,
-        io.grpc.stub.StreamObserver<ie.gmit.sw.GeneratePassword> responseObserver) {
-      asyncUnimplementedUnaryCall(getPasswordServiceMethod(), responseObserver);
+    public void hashService(ie.gmit.sw.Hash request,
+        io.grpc.stub.StreamObserver<ie.gmit.sw.HashResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getHashServiceMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void validateService(ie.gmit.sw.Validate request,
+        io.grpc.stub.StreamObserver<ie.gmit.sw.ValidateResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getValidateServiceMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getPasswordServiceMethod(),
+            getHashServiceMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                ie.gmit.sw.HashSaltPassword,
-                ie.gmit.sw.GeneratePassword>(
-                  this, METHODID_PASSWORD_SERVICE)))
+                ie.gmit.sw.Hash,
+                ie.gmit.sw.HashResponse>(
+                  this, METHODID_HASH_SERVICE)))
+          .addMethod(
+            getValidateServiceMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                ie.gmit.sw.Validate,
+                ie.gmit.sw.ValidateResponse>(
+                  this, METHODID_VALIDATE_SERVICE)))
           .build();
     }
   }
@@ -137,13 +182,21 @@ public final class PasswordServiceGrpc {
 
     /**
      * <pre>
-     * Sends a Password
+     * Hash and validate
      * </pre>
      */
-    public void passwordService(ie.gmit.sw.HashSaltPassword request,
-        io.grpc.stub.StreamObserver<ie.gmit.sw.GeneratePassword> responseObserver) {
+    public void hashService(ie.gmit.sw.Hash request,
+        io.grpc.stub.StreamObserver<ie.gmit.sw.HashResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getPasswordServiceMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getHashServiceMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void validateService(ie.gmit.sw.Validate request,
+        io.grpc.stub.StreamObserver<ie.gmit.sw.ValidateResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getValidateServiceMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -170,12 +223,19 @@ public final class PasswordServiceGrpc {
 
     /**
      * <pre>
-     * Sends a Password
+     * Hash and validate
      * </pre>
      */
-    public ie.gmit.sw.GeneratePassword passwordService(ie.gmit.sw.HashSaltPassword request) {
+    public ie.gmit.sw.HashResponse hashService(ie.gmit.sw.Hash request) {
       return blockingUnaryCall(
-          getChannel(), getPasswordServiceMethod(), getCallOptions(), request);
+          getChannel(), getHashServiceMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public ie.gmit.sw.ValidateResponse validateService(ie.gmit.sw.Validate request) {
+      return blockingUnaryCall(
+          getChannel(), getValidateServiceMethod(), getCallOptions(), request);
     }
   }
 
@@ -202,17 +262,26 @@ public final class PasswordServiceGrpc {
 
     /**
      * <pre>
-     * Sends a Password
+     * Hash and validate
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<ie.gmit.sw.GeneratePassword> passwordService(
-        ie.gmit.sw.HashSaltPassword request) {
+    public com.google.common.util.concurrent.ListenableFuture<ie.gmit.sw.HashResponse> hashService(
+        ie.gmit.sw.Hash request) {
       return futureUnaryCall(
-          getChannel().newCall(getPasswordServiceMethod(), getCallOptions()), request);
+          getChannel().newCall(getHashServiceMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ie.gmit.sw.ValidateResponse> validateService(
+        ie.gmit.sw.Validate request) {
+      return futureUnaryCall(
+          getChannel().newCall(getValidateServiceMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_PASSWORD_SERVICE = 0;
+  private static final int METHODID_HASH_SERVICE = 0;
+  private static final int METHODID_VALIDATE_SERVICE = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -231,9 +300,13 @@ public final class PasswordServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_PASSWORD_SERVICE:
-          serviceImpl.passwordService((ie.gmit.sw.HashSaltPassword) request,
-              (io.grpc.stub.StreamObserver<ie.gmit.sw.GeneratePassword>) responseObserver);
+        case METHODID_HASH_SERVICE:
+          serviceImpl.hashService((ie.gmit.sw.Hash) request,
+              (io.grpc.stub.StreamObserver<ie.gmit.sw.HashResponse>) responseObserver);
+          break;
+        case METHODID_VALIDATE_SERVICE:
+          serviceImpl.validateService((ie.gmit.sw.Validate) request,
+              (io.grpc.stub.StreamObserver<ie.gmit.sw.ValidateResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -296,7 +369,8 @@ public final class PasswordServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new PasswordServiceFileDescriptorSupplier())
-              .addMethod(getPasswordServiceMethod())
+              .addMethod(getHashServiceMethod())
+              .addMethod(getValidateServiceMethod())
               .build();
         }
       }

@@ -3,16 +3,21 @@
 
 package ie.gmit.sw;
 
-public interface HashSaltPasswordOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:HashSaltPassword)
+public interface HashOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:Hash)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string password = 1;</code>
+   * <code>int32 userID = 1;</code>
+   */
+  int getUserID();
+
+  /**
+   * <code>string password = 2;</code>
    */
   java.lang.String getPassword();
   /**
-   * <code>string password = 1;</code>
+   * <code>string password = 2;</code>
    */
   com.google.protobuf.ByteString
       getPasswordBytes();

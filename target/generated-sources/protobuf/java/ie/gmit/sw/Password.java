@@ -15,15 +15,25 @@ public final class Password {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_HashSaltPassword_descriptor;
+    internal_static_Hash_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_HashSaltPassword_fieldAccessorTable;
+      internal_static_Hash_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_GeneratePassword_descriptor;
+    internal_static_Validate_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_GeneratePassword_fieldAccessorTable;
+      internal_static_Validate_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_HashResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_HashResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ValidateResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ValidateResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -33,28 +43,45 @@ public final class Password {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016password.proto\"$\n\020HashSaltPassword\022\020\n\010" +
-      "password\030\001 \001(\t\"(\n\020GeneratePassword\022\024\n\014ha" +
-      "shedSalted\030\001 \001(\t2L\n\017PasswordService\0229\n\017P" +
-      "asswordService\022\021.HashSaltPassword\032\021.Gene" +
-      "ratePassword\"\000B\016\n\nie.gmit.swP\001b\006proto3"
+      "\n\016password.proto\"(\n\004Hash\022\016\n\006userID\030\001 \001(\005" +
+      "\022\020\n\010password\030\002 \001(\t\"B\n\010Validate\022\020\n\010passwo" +
+      "rd\030\001 \001(\t\022\026\n\016hashedPassword\030\002 \001(\t\022\014\n\004salt" +
+      "\030\003 \001(\t\"D\n\014HashResponse\022\016\n\006userID\030\001 \001(\005\022\026" +
+      "\n\016hashedPassword\030\002 \001(\t\022\014\n\004salt\030\003 \001(\t\")\n\020" +
+      "ValidateResponse\022\025\n\rvalidPassword\030\001 \001(\0102" +
+      "k\n\017PasswordService\022%\n\013HashService\022\005.Hash" +
+      "\032\r.HashResponse\"\000\0221\n\017ValidateService\022\t.V" +
+      "alidate\032\021.ValidateResponse\"\000B\016\n\nie.gmit." +
+      "swP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_HashSaltPassword_descriptor =
+    internal_static_Hash_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_HashSaltPassword_fieldAccessorTable = new
+    internal_static_Hash_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_HashSaltPassword_descriptor,
-        new java.lang.String[] { "Password", });
-    internal_static_GeneratePassword_descriptor =
+        internal_static_Hash_descriptor,
+        new java.lang.String[] { "UserID", "Password", });
+    internal_static_Validate_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_GeneratePassword_fieldAccessorTable = new
+    internal_static_Validate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_GeneratePassword_descriptor,
-        new java.lang.String[] { "HashedSalted", });
+        internal_static_Validate_descriptor,
+        new java.lang.String[] { "Password", "HashedPassword", "Salt", });
+    internal_static_HashResponse_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_HashResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_HashResponse_descriptor,
+        new java.lang.String[] { "UserID", "HashedPassword", "Salt", });
+    internal_static_ValidateResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_ValidateResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ValidateResponse_descriptor,
+        new java.lang.String[] { "ValidPassword", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
