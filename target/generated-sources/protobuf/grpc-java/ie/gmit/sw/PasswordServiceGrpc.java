@@ -160,7 +160,12 @@ public final class PasswordServiceGrpc {
           .build();
     }
 
-	public void HashService(HashResponse req, StreamObserver<HashResponse> responseObserver) {
+	public void validateService(ValidateResponse req, StreamObserver<ValidateResponse> responseObserver) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void hashService(HashResponse req, StreamObserver<HashResponse> responseObserver) {
 		// TODO Auto-generated method stub
 		
 	}

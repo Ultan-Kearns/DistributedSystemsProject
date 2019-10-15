@@ -33,10 +33,16 @@ public class AppServer {
         }
     }
     static class PasswordImpl extends PasswordServiceImplBase implements BindableService {
-
+    	//May have to delete overridden methods
         @Override
-        public void HashService(HashResponse req, StreamObserver<HashResponse> responseObserver) {
+        public void hashService(HashResponse req, StreamObserver<HashResponse> responseObserver) {
         	HashResponse reply = HashResponse.newBuilder().build();
+            responseObserver.onNext(reply);
+            responseObserver.onCompleted();
+        }
+        @Override
+        public void validateService(ValidateResponse req, StreamObserver<ValidateResponse> responseObserver) {
+        	ValidateResponse reply = ValidateResponse.newBuilder().build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
         }
