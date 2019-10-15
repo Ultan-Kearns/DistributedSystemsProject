@@ -15,6 +15,8 @@ import static io.grpc.stub.ServerCalls.asyncUnaryCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
+import io.grpc.stub.StreamObserver;
+
 /**
  * <pre>
  * The Password service definition.
@@ -157,6 +159,11 @@ public final class PasswordServiceGrpc {
                   this, METHODID_VALIDATE_SERVICE)))
           .build();
     }
+
+	public void HashService(HashResponse req, StreamObserver<HashResponse> responseObserver) {
+		// TODO Auto-generated method stub
+		
+	}
   }
 
   /**
