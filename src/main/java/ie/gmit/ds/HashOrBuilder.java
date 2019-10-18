@@ -3,14 +3,14 @@
 
 package ie.gmit.ds;
 
-public interface HashResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:HashResponse)
+public interface HashOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:ie.gmit.ds.Hash)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 userID = 1;</code>
+   * <code>int32 userId = 1;</code>
    */
-  int getUserID();
+  int getUserId();
 
   /**
    * <code>string hashedPassword = 2;</code>

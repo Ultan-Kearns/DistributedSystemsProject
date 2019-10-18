@@ -4,25 +4,25 @@
 package ie.gmit.ds;
 
 /**
- * Protobuf type {@code ValidateResponse}
+ * Protobuf type {@code ie.gmit.ds.Validate}
  */
-public  final class ValidateResponse extends
+public  final class Validate extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ValidateResponse)
-    ValidateResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:ie.gmit.ds.Validate)
+    ValidateOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ValidateResponse.newBuilder() to construct.
-  private ValidateResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use Validate.newBuilder() to construct.
+  private Validate(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ValidateResponse() {
+  private Validate() {
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new ValidateResponse();
+    return new Validate();
   }
 
   @java.lang.Override
@@ -30,7 +30,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private ValidateResponse(
+  private Validate(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -50,7 +50,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            validPassword_ = input.readBool();
+            passwordValid_ = input.readBool();
             break;
           }
           default: {
@@ -74,24 +74,24 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return ie.gmit.ds.Password.internal_static_ValidateResponse_descriptor;
+    return ie.gmit.ds.Password.internal_static_ie_gmit_ds_Validate_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return ie.gmit.ds.Password.internal_static_ValidateResponse_fieldAccessorTable
+    return ie.gmit.ds.Password.internal_static_ie_gmit_ds_Validate_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            ie.gmit.ds.ValidateResponse.class, ie.gmit.ds.ValidateResponse.Builder.class);
+            ie.gmit.ds.Validate.class, ie.gmit.ds.Validate.Builder.class);
   }
 
-  public static final int VALIDPASSWORD_FIELD_NUMBER = 1;
-  private boolean validPassword_;
+  public static final int PASSWORDVALID_FIELD_NUMBER = 1;
+  private boolean passwordValid_;
   /**
-   * <code>bool validPassword = 1;</code>
+   * <code>bool passwordValid = 1;</code>
    */
-  public boolean getValidPassword() {
-    return validPassword_;
+  public boolean getPasswordValid() {
+    return passwordValid_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -108,8 +108,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (validPassword_ != false) {
-      output.writeBool(1, validPassword_);
+    if (passwordValid_ != false) {
+      output.writeBool(1, passwordValid_);
     }
     unknownFields.writeTo(output);
   }
@@ -120,9 +120,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (validPassword_ != false) {
+    if (passwordValid_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(1, validPassword_);
+        .computeBoolSize(1, passwordValid_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -134,13 +134,13 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof ie.gmit.ds.ValidateResponse)) {
+    if (!(obj instanceof ie.gmit.ds.Validate)) {
       return super.equals(obj);
     }
-    ie.gmit.ds.ValidateResponse other = (ie.gmit.ds.ValidateResponse) obj;
+    ie.gmit.ds.Validate other = (ie.gmit.ds.Validate) obj;
 
-    if (getValidPassword()
-        != other.getValidPassword()) return false;
+    if (getPasswordValid()
+        != other.getPasswordValid()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -152,77 +152,77 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + VALIDPASSWORD_FIELD_NUMBER;
+    hash = (37 * hash) + PASSWORDVALID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getValidPassword());
+        getPasswordValid());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static ie.gmit.ds.ValidateResponse parseFrom(
+  public static ie.gmit.ds.Validate parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(
+  public static ie.gmit.ds.Validate parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(
+  public static ie.gmit.ds.Validate parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(
+  public static ie.gmit.ds.Validate parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(byte[] data)
+  public static ie.gmit.ds.Validate parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(
+  public static ie.gmit.ds.Validate parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(java.io.InputStream input)
+  public static ie.gmit.ds.Validate parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(
+  public static ie.gmit.ds.Validate parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static ie.gmit.ds.ValidateResponse parseDelimitedFrom(java.io.InputStream input)
+  public static ie.gmit.ds.Validate parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static ie.gmit.ds.ValidateResponse parseDelimitedFrom(
+  public static ie.gmit.ds.Validate parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(
+  public static ie.gmit.ds.Validate parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static ie.gmit.ds.ValidateResponse parseFrom(
+  public static ie.gmit.ds.Validate parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -235,7 +235,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(ie.gmit.ds.ValidateResponse prototype) {
+  public static Builder newBuilder(ie.gmit.ds.Validate prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -251,26 +251,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ValidateResponse}
+   * Protobuf type {@code ie.gmit.ds.Validate}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ValidateResponse)
-      ie.gmit.ds.ValidateResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:ie.gmit.ds.Validate)
+      ie.gmit.ds.ValidateOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ie.gmit.ds.Password.internal_static_ValidateResponse_descriptor;
+      return ie.gmit.ds.Password.internal_static_ie_gmit_ds_Validate_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ie.gmit.ds.Password.internal_static_ValidateResponse_fieldAccessorTable
+      return ie.gmit.ds.Password.internal_static_ie_gmit_ds_Validate_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ie.gmit.ds.ValidateResponse.class, ie.gmit.ds.ValidateResponse.Builder.class);
+              ie.gmit.ds.Validate.class, ie.gmit.ds.Validate.Builder.class);
     }
 
-    // Construct using ie.gmit.ds.ValidateResponse.newBuilder()
+    // Construct using ie.gmit.ds.Validate.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -288,7 +288,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      validPassword_ = false;
+      passwordValid_ = false;
 
       return this;
     }
@@ -296,17 +296,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return ie.gmit.ds.Password.internal_static_ValidateResponse_descriptor;
+      return ie.gmit.ds.Password.internal_static_ie_gmit_ds_Validate_descriptor;
     }
 
     @java.lang.Override
-    public ie.gmit.ds.ValidateResponse getDefaultInstanceForType() {
-      return ie.gmit.ds.ValidateResponse.getDefaultInstance();
+    public ie.gmit.ds.Validate getDefaultInstanceForType() {
+      return ie.gmit.ds.Validate.getDefaultInstance();
     }
 
     @java.lang.Override
-    public ie.gmit.ds.ValidateResponse build() {
-      ie.gmit.ds.ValidateResponse result = buildPartial();
+    public ie.gmit.ds.Validate build() {
+      ie.gmit.ds.Validate result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -314,9 +314,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public ie.gmit.ds.ValidateResponse buildPartial() {
-      ie.gmit.ds.ValidateResponse result = new ie.gmit.ds.ValidateResponse(this);
-      result.validPassword_ = validPassword_;
+    public ie.gmit.ds.Validate buildPartial() {
+      ie.gmit.ds.Validate result = new ie.gmit.ds.Validate(this);
+      result.passwordValid_ = passwordValid_;
       onBuilt();
       return result;
     }
@@ -355,18 +355,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof ie.gmit.ds.ValidateResponse) {
-        return mergeFrom((ie.gmit.ds.ValidateResponse)other);
+      if (other instanceof ie.gmit.ds.Validate) {
+        return mergeFrom((ie.gmit.ds.Validate)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(ie.gmit.ds.ValidateResponse other) {
-      if (other == ie.gmit.ds.ValidateResponse.getDefaultInstance()) return this;
-      if (other.getValidPassword() != false) {
-        setValidPassword(other.getValidPassword());
+    public Builder mergeFrom(ie.gmit.ds.Validate other) {
+      if (other == ie.gmit.ds.Validate.getDefaultInstance()) return this;
+      if (other.getPasswordValid() != false) {
+        setPasswordValid(other.getPasswordValid());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -383,11 +383,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ie.gmit.ds.ValidateResponse parsedMessage = null;
+      ie.gmit.ds.Validate parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ie.gmit.ds.ValidateResponse) e.getUnfinishedMessage();
+        parsedMessage = (ie.gmit.ds.Validate) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -397,28 +397,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private boolean validPassword_ ;
+    private boolean passwordValid_ ;
     /**
-     * <code>bool validPassword = 1;</code>
+     * <code>bool passwordValid = 1;</code>
      */
-    public boolean getValidPassword() {
-      return validPassword_;
+    public boolean getPasswordValid() {
+      return passwordValid_;
     }
     /**
-     * <code>bool validPassword = 1;</code>
+     * <code>bool passwordValid = 1;</code>
      */
-    public Builder setValidPassword(boolean value) {
+    public Builder setPasswordValid(boolean value) {
       
-      validPassword_ = value;
+      passwordValid_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bool validPassword = 1;</code>
+     * <code>bool passwordValid = 1;</code>
      */
-    public Builder clearValidPassword() {
+    public Builder clearPasswordValid() {
       
-      validPassword_ = false;
+      passwordValid_ = false;
       onChanged();
       return this;
     }
@@ -435,41 +435,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ValidateResponse)
+    // @@protoc_insertion_point(builder_scope:ie.gmit.ds.Validate)
   }
 
-  // @@protoc_insertion_point(class_scope:ValidateResponse)
-  private static final ie.gmit.ds.ValidateResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:ie.gmit.ds.Validate)
+  private static final ie.gmit.ds.Validate DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new ie.gmit.ds.ValidateResponse();
+    DEFAULT_INSTANCE = new ie.gmit.ds.Validate();
   }
 
-  public static ie.gmit.ds.ValidateResponse getDefaultInstance() {
+  public static ie.gmit.ds.Validate getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ValidateResponse>
-      PARSER = new com.google.protobuf.AbstractParser<ValidateResponse>() {
+  private static final com.google.protobuf.Parser<Validate>
+      PARSER = new com.google.protobuf.AbstractParser<Validate>() {
     @java.lang.Override
-    public ValidateResponse parsePartialFrom(
+    public Validate parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ValidateResponse(input, extensionRegistry);
+      return new Validate(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<ValidateResponse> parser() {
+  public static com.google.protobuf.Parser<Validate> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ValidateResponse> getParserForType() {
+  public com.google.protobuf.Parser<Validate> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public ie.gmit.ds.ValidateResponse getDefaultInstanceForType() {
+  public ie.gmit.ds.Validate getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
