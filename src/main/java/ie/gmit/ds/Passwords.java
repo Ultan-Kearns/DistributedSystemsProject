@@ -68,7 +68,11 @@ public class Passwords {
      * @return true if the given password and salt match the hashed value, false otherwise
      */
     public static boolean isExpectedPassword(char[] password, byte[] salt, byte[] expectedHash) {
+    	//value for password never changes?
+    	System.out.println( "IN EXPeCTED PASSWORD " + password.toString() + " SALT" + salt);
         byte[] pwdHash = hash(password, salt);
+         //for testing
+        System.out.println("SHOULD BE EQUAL " +pwdHash.toString() + " " + expectedHash.toString());
         return Arrays.equals(pwdHash, expectedHash);
     }
 

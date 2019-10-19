@@ -574,12 +574,12 @@ private static final long serialVersionUID = 0L;
      * <code>string hashedPassword = 2;</code>
      */
     public Builder setHashedPassword(
-        java.lang.String value) {
-      if (value == null) {
+        String string) {
+      if (string == null) {
     throw new NullPointerException();
   }
   
-      hashedPassword_ = value;
+      hashedPassword_ = string;
       onChanged();
       return this;
     }
