@@ -27,66 +27,66 @@ public final class passwordGrpc {
   public static final String SERVICE_NAME = "ie.gmit.ds.password";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<ie.gmit.ds.Hash,
-      ie.gmit.ds.Hash> getHashPasswordMethod;
+  private static volatile io.grpc.MethodDescriptor<ie.gmit.ds.HashPassword,
+      ie.gmit.ds.HashPassword> getHashPassMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "HashPassword",
-      requestType = ie.gmit.ds.Hash.class,
-      responseType = ie.gmit.ds.Hash.class,
+      fullMethodName = SERVICE_NAME + '/' + "HashPass",
+      requestType = ie.gmit.ds.HashPassword.class,
+      responseType = ie.gmit.ds.HashPassword.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<ie.gmit.ds.Hash,
-      ie.gmit.ds.Hash> getHashPasswordMethod() {
-    io.grpc.MethodDescriptor<ie.gmit.ds.Hash, ie.gmit.ds.Hash> getHashPasswordMethod;
-    if ((getHashPasswordMethod = passwordGrpc.getHashPasswordMethod) == null) {
+  public static io.grpc.MethodDescriptor<ie.gmit.ds.HashPassword,
+      ie.gmit.ds.HashPassword> getHashPassMethod() {
+    io.grpc.MethodDescriptor<ie.gmit.ds.HashPassword, ie.gmit.ds.HashPassword> getHashPassMethod;
+    if ((getHashPassMethod = passwordGrpc.getHashPassMethod) == null) {
       synchronized (passwordGrpc.class) {
-        if ((getHashPasswordMethod = passwordGrpc.getHashPasswordMethod) == null) {
-          passwordGrpc.getHashPasswordMethod = getHashPasswordMethod =
-              io.grpc.MethodDescriptor.<ie.gmit.ds.Hash, ie.gmit.ds.Hash>newBuilder()
+        if ((getHashPassMethod = passwordGrpc.getHashPassMethod) == null) {
+          passwordGrpc.getHashPassMethod = getHashPassMethod =
+              io.grpc.MethodDescriptor.<ie.gmit.ds.HashPassword, ie.gmit.ds.HashPassword>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "HashPassword"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "HashPass"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ie.gmit.ds.Hash.getDefaultInstance()))
+                  ie.gmit.ds.HashPassword.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ie.gmit.ds.Hash.getDefaultInstance()))
-              .setSchemaDescriptor(new passwordMethodDescriptorSupplier("HashPassword"))
+                  ie.gmit.ds.HashPassword.getDefaultInstance()))
+              .setSchemaDescriptor(new passwordMethodDescriptorSupplier("HashPass"))
               .build();
         }
       }
     }
-    return getHashPasswordMethod;
+    return getHashPassMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<ie.gmit.ds.Hash,
-      com.google.protobuf.BoolValue> getValidatePasswordMethod;
+  private static volatile io.grpc.MethodDescriptor<ie.gmit.ds.ValidatePassword,
+      com.google.protobuf.BoolValue> getValidPassMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "ValidatePassword",
-      requestType = ie.gmit.ds.Hash.class,
+      fullMethodName = SERVICE_NAME + '/' + "ValidPass",
+      requestType = ie.gmit.ds.ValidatePassword.class,
       responseType = com.google.protobuf.BoolValue.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<ie.gmit.ds.Hash,
-      com.google.protobuf.BoolValue> getValidatePasswordMethod() {
-    io.grpc.MethodDescriptor<ie.gmit.ds.Hash, com.google.protobuf.BoolValue> getValidatePasswordMethod;
-    if ((getValidatePasswordMethod = passwordGrpc.getValidatePasswordMethod) == null) {
+  public static io.grpc.MethodDescriptor<ie.gmit.ds.ValidatePassword,
+      com.google.protobuf.BoolValue> getValidPassMethod() {
+    io.grpc.MethodDescriptor<ie.gmit.ds.ValidatePassword, com.google.protobuf.BoolValue> getValidPassMethod;
+    if ((getValidPassMethod = passwordGrpc.getValidPassMethod) == null) {
       synchronized (passwordGrpc.class) {
-        if ((getValidatePasswordMethod = passwordGrpc.getValidatePasswordMethod) == null) {
-          passwordGrpc.getValidatePasswordMethod = getValidatePasswordMethod =
-              io.grpc.MethodDescriptor.<ie.gmit.ds.Hash, com.google.protobuf.BoolValue>newBuilder()
+        if ((getValidPassMethod = passwordGrpc.getValidPassMethod) == null) {
+          passwordGrpc.getValidPassMethod = getValidPassMethod =
+              io.grpc.MethodDescriptor.<ie.gmit.ds.ValidatePassword, com.google.protobuf.BoolValue>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ValidatePassword"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ValidPass"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ie.gmit.ds.Hash.getDefaultInstance()))
+                  ie.gmit.ds.ValidatePassword.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.BoolValue.getDefaultInstance()))
-              .setSchemaDescriptor(new passwordMethodDescriptorSupplier("ValidatePassword"))
+              .setSchemaDescriptor(new passwordMethodDescriptorSupplier("ValidPass"))
               .build();
         }
       }
     }
-    return getValidatePasswordMethod;
+    return getValidPassMethod;
   }
 
   /**
@@ -118,34 +118,34 @@ public final class passwordGrpc {
 
     /**
      */
-    public void hashPassword(ie.gmit.ds.Hash request,
-        io.grpc.stub.StreamObserver<ie.gmit.ds.Hash> responseObserver) {
-      asyncUnimplementedUnaryCall(getHashPasswordMethod(), responseObserver);
+    public void hashPass(ie.gmit.ds.HashPassword request,
+        io.grpc.stub.StreamObserver<ie.gmit.ds.HashPassword> responseObserver) {
+      asyncUnimplementedUnaryCall(getHashPassMethod(), responseObserver);
     }
 
     /**
      */
-    public void validatePassword(ie.gmit.ds.Hash request,
+    public void validPass(ie.gmit.ds.ValidatePassword request,
         io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
-      asyncUnimplementedUnaryCall(getValidatePasswordMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getValidPassMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getHashPasswordMethod(),
+            getHashPassMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                ie.gmit.ds.Hash,
-                ie.gmit.ds.Hash>(
-                  this, METHODID_HASH_PASSWORD)))
+                ie.gmit.ds.HashPassword,
+                ie.gmit.ds.HashPassword>(
+                  this, METHODID_HASH_PASS)))
           .addMethod(
-            getValidatePasswordMethod(),
+            getValidPassMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                ie.gmit.ds.Hash,
+                ie.gmit.ds.ValidatePassword,
                 com.google.protobuf.BoolValue>(
-                  this, METHODID_VALIDATE_PASSWORD)))
+                  this, METHODID_VALID_PASS)))
           .build();
     }
   }
@@ -170,18 +170,18 @@ public final class passwordGrpc {
 
     /**
      */
-    public void hashPassword(ie.gmit.ds.Hash request,
-        io.grpc.stub.StreamObserver<ie.gmit.ds.Hash> responseObserver) {
+    public void hashPass(ie.gmit.ds.HashPassword request,
+        io.grpc.stub.StreamObserver<ie.gmit.ds.HashPassword> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getHashPasswordMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getHashPassMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void validatePassword(ie.gmit.ds.Hash request,
+    public void validPass(ie.gmit.ds.ValidatePassword request,
         io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getValidatePasswordMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getValidPassMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -205,16 +205,16 @@ public final class passwordGrpc {
 
     /**
      */
-    public ie.gmit.ds.Hash hashPassword(ie.gmit.ds.Hash request) {
+    public ie.gmit.ds.HashPassword hashPass(ie.gmit.ds.HashPassword request) {
       return blockingUnaryCall(
-          getChannel(), getHashPasswordMethod(), getCallOptions(), request);
+          getChannel(), getHashPassMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.BoolValue validatePassword(ie.gmit.ds.Hash request) {
+    public com.google.protobuf.BoolValue validPass(ie.gmit.ds.ValidatePassword request) {
       return blockingUnaryCall(
-          getChannel(), getValidatePasswordMethod(), getCallOptions(), request);
+          getChannel(), getValidPassMethod(), getCallOptions(), request);
     }
   }
 
@@ -238,23 +238,23 @@ public final class passwordGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<ie.gmit.ds.Hash> hashPassword(
-        ie.gmit.ds.Hash request) {
+    public com.google.common.util.concurrent.ListenableFuture<ie.gmit.ds.HashPassword> hashPass(
+        ie.gmit.ds.HashPassword request) {
       return futureUnaryCall(
-          getChannel().newCall(getHashPasswordMethod(), getCallOptions()), request);
+          getChannel().newCall(getHashPassMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.BoolValue> validatePassword(
-        ie.gmit.ds.Hash request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.BoolValue> validPass(
+        ie.gmit.ds.ValidatePassword request) {
       return futureUnaryCall(
-          getChannel().newCall(getValidatePasswordMethod(), getCallOptions()), request);
+          getChannel().newCall(getValidPassMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_HASH_PASSWORD = 0;
-  private static final int METHODID_VALIDATE_PASSWORD = 1;
+  private static final int METHODID_HASH_PASS = 0;
+  private static final int METHODID_VALID_PASS = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -273,12 +273,12 @@ public final class passwordGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_HASH_PASSWORD:
-          serviceImpl.hashPassword((ie.gmit.ds.Hash) request,
-              (io.grpc.stub.StreamObserver<ie.gmit.ds.Hash>) responseObserver);
+        case METHODID_HASH_PASS:
+          serviceImpl.hashPass((ie.gmit.ds.HashPassword) request,
+              (io.grpc.stub.StreamObserver<ie.gmit.ds.HashPassword>) responseObserver);
           break;
-        case METHODID_VALIDATE_PASSWORD:
-          serviceImpl.validatePassword((ie.gmit.ds.Hash) request,
+        case METHODID_VALID_PASS:
+          serviceImpl.validPass((ie.gmit.ds.ValidatePassword) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue>) responseObserver);
           break;
         default:
@@ -342,8 +342,8 @@ public final class passwordGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new passwordFileDescriptorSupplier())
-              .addMethod(getHashPasswordMethod())
-              .addMethod(getValidatePasswordMethod())
+              .addMethod(getHashPassMethod())
+              .addMethod(getValidPassMethod())
               .build();
         }
       }

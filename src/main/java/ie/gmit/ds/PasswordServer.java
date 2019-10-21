@@ -7,13 +7,13 @@ import ie.gmit.ds.passwordGrpc.passwordImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
-public class PasswordServerImpl extends passwordImplBase{
+public class PasswordServer extends passwordImplBase{
     private Server grpcServer;
-    private static final Logger logger = Logger.getLogger(PasswordServerImpl.class.getName());
+    private static final Logger logger = Logger.getLogger(PasswordServer.class.getName());
     private static final int PORT = 50551;
     private void start() throws IOException {
         grpcServer = ServerBuilder.forPort(PORT)
-                .addService(new PasswordServerImpl())
+                .addService(new PasswordServiceImpl())
                 .build()
                 .start();
         logger.info("Server started, listening on " + PORT);
@@ -34,9 +34,9 @@ public class PasswordServerImpl extends passwordImplBase{
         }
     }
     public static void main(String[] args) throws IOException, InterruptedException {
-        final PasswordServerImpl inventoryServer = new PasswordServerImpl();
-        inventoryServer.start();
-        inventoryServer.blockUntilShutdown();
+        final PasswordServer passwordServer = new PasswordServer();
+        passwordServer.start();
+        passwordServer.blockUntilShutdown();
     }
 }
 

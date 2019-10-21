@@ -15,15 +15,15 @@ public final class Password {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ie_gmit_ds_Hash_descriptor;
+    internal_static_ie_gmit_ds_HashPassword_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ie_gmit_ds_Hash_fieldAccessorTable;
+      internal_static_ie_gmit_ds_HashPassword_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ie_gmit_ds_Validate_descriptor;
+    internal_static_ie_gmit_ds_ValidatePassword_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ie_gmit_ds_Validate_fieldAccessorTable;
+      internal_static_ie_gmit_ds_ValidatePassword_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -34,31 +34,32 @@ public final class Password {
   static {
     java.lang.String[] descriptorData = {
       "\n\016password.proto\022\nie.gmit.ds\032\036google/pro" +
-      "tobuf/wrappers.proto\"<\n\004Hash\022\016\n\006userId\030\001" +
-      " \001(\005\022\026\n\016hashedPassword\030\002 \001(\t\022\014\n\004salt\030\003 \001" +
-      "(\t\"!\n\010Validate\022\025\n\rpasswordValid\030\001 \001(\0102\200\001" +
-      "\n\010password\0222\n\014HashPassword\022\020.ie.gmit.ds." +
-      "Hash\032\020.ie.gmit.ds.Hash\022@\n\020ValidatePasswo" +
-      "rd\022\020.ie.gmit.ds.Hash\032\032.google.protobuf.B" +
-      "oolValueB\016\n\nie.gmit.dsP\001b\006proto3"
+      "tobuf/wrappers.proto\"0\n\014HashPassword\022\016\n\006" +
+      "userId\030\001 \001(\005\022\020\n\010password\030\002 \001(\t\"J\n\020Valida" +
+      "tePassword\022\020\n\010password\030\001 \001(\t\022\026\n\016hashedPa" +
+      "ssword\030\002 \001(\t\022\014\n\004salt\030\003 \001(\t2\221\001\n\010password\022" +
+      ">\n\010HashPass\022\030.ie.gmit.ds.HashPassword\032\030." +
+      "ie.gmit.ds.HashPassword\022E\n\tValidPass\022\034.i" +
+      "e.gmit.ds.ValidatePassword\032\032.google.prot" +
+      "obuf.BoolValueB\016\n\nie.gmit.dsP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.WrappersProto.getDescriptor(),
         });
-    internal_static_ie_gmit_ds_Hash_descriptor =
+    internal_static_ie_gmit_ds_HashPassword_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_ie_gmit_ds_Hash_fieldAccessorTable = new
+    internal_static_ie_gmit_ds_HashPassword_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ie_gmit_ds_Hash_descriptor,
-        new java.lang.String[] { "UserId", "HashedPassword", "Salt", });
-    internal_static_ie_gmit_ds_Validate_descriptor =
+        internal_static_ie_gmit_ds_HashPassword_descriptor,
+        new java.lang.String[] { "UserId", "Password", });
+    internal_static_ie_gmit_ds_ValidatePassword_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_ie_gmit_ds_Validate_fieldAccessorTable = new
+    internal_static_ie_gmit_ds_ValidatePassword_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ie_gmit_ds_Validate_descriptor,
-        new java.lang.String[] { "PasswordValid", });
+        internal_static_ie_gmit_ds_ValidatePassword_descriptor,
+        new java.lang.String[] { "Password", "HashedPassword", "Salt", });
     com.google.protobuf.WrappersProto.getDescriptor();
   }
 

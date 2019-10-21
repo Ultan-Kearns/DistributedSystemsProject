@@ -3,14 +3,19 @@
 
 package ie.gmit.ds;
 
-public interface HashOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ie.gmit.ds.Hash)
+public interface ValidatePasswordOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:ie.gmit.ds.ValidatePassword)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 userId = 1;</code>
+   * <code>string password = 1;</code>
    */
-  int getUserId();
+  java.lang.String getPassword();
+  /**
+   * <code>string password = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getPasswordBytes();
 
   /**
    * <code>string hashedPassword = 2;</code>
