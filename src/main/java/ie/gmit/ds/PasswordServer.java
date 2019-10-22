@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import ie.gmit.ds.passwordGrpc.passwordImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import io.grpc.stub.StreamObserver;
 
 public class PasswordServer extends passwordImplBase{
     private Server grpcServer;
@@ -24,7 +25,6 @@ public class PasswordServer extends passwordImplBase{
             grpcServer.shutdown();
         }
     }
-
     /**
      * Await termination on the main thread since the grpc library uses daemon threads.
      */

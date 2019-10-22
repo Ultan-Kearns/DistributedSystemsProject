@@ -17,6 +17,8 @@ public class PasswordServiceImpl extends passwordImplBase{
  	}
  	@Override
 	public void hashPass(HashPassword password,StreamObserver<HashPassword> responseObserver) {
-		
+		byte[] hashed = Passwords.hash(password.getPassword().toCharArray(), Passwords.getNextSalt());
+		password = HashPassword.newBuilder().setUserId(password.getUserId()).setPassword(hashed.toString()).build();
+		responseObserver.onNext(password);
  	}
 }
