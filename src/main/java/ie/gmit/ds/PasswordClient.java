@@ -6,20 +6,23 @@ import java.util.logging.Logger;
 
 import com.google.common.hash.Hasher;
 import com.google.protobuf.BoolValue;
-
+ 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 
 public class PasswordClient {
-	private passwordGrpc.passwordStub passwordService;
+	private passwordGrpc.passwordStub asyncPasswordService;
+	private passwordGrpc.passwordBlockingStub syncPasswordService;
 	private static final Logger logger = Logger.getLogger(PasswordClient.class.getName());
 	private final ManagedChannel channel;
 
 	public PasswordClient(String host, int port) {
 		channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
-		passwordService = passwordGrpc.newStub(channel);
+		asyncPasswordService = passwordGrpc.newStub(channel);
+        syncPasswordService = passwordGrpc.newBlockingStub(channel);
+
 	}
 
 	public void shutdown() throws InterruptedException {
@@ -34,35 +37,51 @@ public class PasswordClient {
 			public void onNext(HashPassword value) {
 				logger.info(value.getUserId() + " " + value.getPassword());
 			}
+
 			@Override
 			public void onError(Throwable t) {
 				logger.info("ERROR: " + t.toString());
 			}
+
 			@Override
 			public void onCompleted() {
 				logger.info("completed hashing");
 			}
 		};
 		logger.info("Hashing password  ");
-		passwordService.hashPass(request, responseObserver);
+		asyncPasswordService.hashPass(request, responseObserver);
 		try {
 			responseObserver.onNext(request);
-  			return responseObserver.toString();
+			return responseObserver.toString();
 		} catch (StatusRuntimeException ex) {
 			logger.log(Level.WARNING, "RPC failed: {0}", ex.getStatus());
 			return "ERROR";
 		}
 	}
 
-	private boolean validatePassword(String password, String hashedPassword, String salt) {
+	private BoolValue validate(String password, String hashedPassword, String salt) {
 		// return boolean
-		return Passwords.isExpectedPassword(password.toCharArray(), hashedPassword.getBytes(), salt.getBytes());
+		ValidatePassword request = ValidatePassword.newBuilder().setHashedPassword(hashedPassword).setPassword(password)
+				.setSalt("Need to find way to get salt").build();
+		logger.info(request.getAllFields().toString());
+        BoolValue result = BoolValue.newBuilder().setValue(false).build();
+  		try {
+  			logger.info("TEST " + result.toString());
+  			//this causing crash
+  	        result = syncPasswordService.validPass(request);
+  	        } catch (StatusRuntimeException ex) {
+			logger.log(Level.WARNING, "RPC failed: {0}", ex.getStatus());
+  	        }
+			return result;
 	}
 
 	public static void main(String[] args) throws Exception {
 		PasswordClient pc = new PasswordClient("localhost", 50551);
 		try {
-			logger.info("test " + pc.Hash(123, "12213231"));
+			pc.Hash(123, "12213231");
+			// should return true
+			BoolValue test = pc.validate("test", "test", "test");
+			logger.info("VALID " + test);
 		} finally {
 			// Don't stop process, keep alive to receive async response
 			Thread.currentThread().join();
