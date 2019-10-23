@@ -69,11 +69,9 @@ public class Passwords {
      */
     public static boolean isExpectedPassword(char[] password, byte[] salt, byte[] expectedHash) {
     	//value for password never changes?
-    	System.out.println( "IN EXPeCTED PASSWORD " + password.toString() + " SALT" + salt);
-        byte[] pwdHash = hash(password, salt);
-         //for testing
-        System.out.println("SHOULD BE EQUAL " +pwdHash.toString() + " " + expectedHash.toString());
-        return Arrays.equals(pwdHash, expectedHash);
+         byte[] pwdHash = hash(password, salt);
+         System.out.println(" HASH OF PASS " + pwdHash + " EXPECTED PASS " + expectedHash);
+         return Arrays.equals(pwdHash, expectedHash);
     }
 
     /**

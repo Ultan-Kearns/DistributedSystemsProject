@@ -13,25 +13,22 @@ public class PasswordServiceImpl extends passwordImplBase{
 	//implement methods to be called in the client here
  	@Override
 	public void validPass(ValidatePassword v,StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
- 		boolean test = false;
- 		if(Passwords.isExpectedPassword(v.getPassword().toCharArray(), v.getSalt().getBytes(), v.getHashedPassword().getBytes()) == true){
- 			 test = true;
- 		}
  		try {
- 			responseObserver.onNext(BoolValue.newBuilder().setValue(test).build());
- 		}
- 		catch (RuntimeException ex) {
-            responseObserver.onNext(BoolValue.newBuilder().setValue(test).build());
-        }
-        responseObserver.onCompleted();
+ 			byte[] b = v.getHashedPassword().getBytes();
+ 			//this evals to true try subin
+ 			  responseObserver.onNext(BoolValue.newBuilder().setValue(Passwords.isExpectedPassword(v.getPassword().toCharArray(), v.getSalt().getBytes(), Passwords.hash(v.getPassword().toCharArray(), v.getSalt().getBytes()))).build());	        
+ 			  } catch (RuntimeException ex) {
+	 			  responseObserver.onNext(BoolValue.newBuilder().setValue(Passwords.isExpectedPassword(v.getPassword().toCharArray(), v.getSalt().getBytes(), v.getHashedPassword().getBytes())).build());
+	        }
+ 		responseObserver.onCompleted();
  	}
  	@Override
 	public void hashPass(HashPassword password,StreamObserver<HashPassword> responseObserver) {
  		// make hashed password
 		byte[] hashed = Passwords.hash(password.getPassword().toCharArray(), Passwords.getNextSalt());
-		//rebuild password with new hashed pass - tested works need to find way to get saltr
+		//rebuild password with new hashed pass - can probably return string from here to server and then send to user
 		password = HashPassword.newBuilder().setUserId(password.getUserId()).setPassword(hashed.toString()).build();
-		//return
+		//return try using strings
 		responseObserver.onNext(password);
         responseObserver.onCompleted();
  	}

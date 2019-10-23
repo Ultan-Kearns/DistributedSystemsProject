@@ -35,7 +35,7 @@ public class PasswordClient {
 		StreamObserver<HashPassword> responseObserver = new StreamObserver<HashPassword>() {
 			@Override
 			public void onNext(HashPassword value) {
-				logger.info(value.getUserId() + " " + value.getPassword());
+				logger.info("user ID = "  + value.getUserId() +" Hashed pass = " + value.getPassword());
 			}
 
 			@Override
@@ -48,41 +48,36 @@ public class PasswordClient {
 				logger.info("completed hashing");
 			}
 		};
-		logger.info("Hashing password  ");
 		asyncPasswordService.hashPass(request, responseObserver);
 		try {
 			responseObserver.onNext(request);
-			return responseObserver.toString();
+ 			return responseObserver.toString();
 		} catch (StatusRuntimeException ex) {
 			logger.log(Level.WARNING, "RPC failed: {0}", ex.getStatus());
 			return "ERROR";
 		}
 	}
 
-	private BoolValue validate(String password, String hashedPassword, String salt) {
-		// return boolean
-		ValidatePassword request = ValidatePassword.newBuilder().setHashedPassword(hashedPassword).setPassword(password)
-				.setSalt("Need to find way to get salt").build();
-		logger.info(request.getAllFields().toString());
+	private BoolValue validate(String password,String hashedPassword, String salt) {
+		ValidatePassword request = ValidatePassword.newBuilder().setPassword(password).setSalt(salt)
+				.setHashedPassword(hashedPassword).build();
         BoolValue result = BoolValue.newBuilder().setValue(false).build();
-  		try {
-  			logger.info("TEST " + result.toString());
-  			//this causing crash
-  	        result = syncPasswordService.validPass(request);
-  	        } catch (StatusRuntimeException ex) {
-			logger.log(Level.WARNING, "RPC failed: {0}", ex.getStatus());
-  	        }
-			return result;
+            result = syncPasswordService.validPass(request);
+         if (result.getValue()) {
+            logger.info("Successfully validated password ");
+        } else {
+            logger.warning("Failed to validate password " +  result);
+        }
+        return result;
 	}
 
 	public static void main(String[] args) throws Exception {
 		PasswordClient pc = new PasswordClient("localhost", 50551);
 		try {
-			pc.Hash(123, "12213231");
-			// should return true
-			BoolValue test = pc.validate("test", "test", "test");
-			logger.info("VALID " + test);
-		} finally {
+			 pc.Hash(123, "12213231");
+			// should return true problem with tostring 
+			pc.validate("test",Passwords.hash("test".toCharArray(), "test".getBytes()).toString(),Passwords.getNextSalt().toString());
+ 		} finally {
 			// Don't stop process, keep alive to receive async response
 			Thread.currentThread().join();
 		}
