@@ -70,7 +70,6 @@ public class Passwords {
     public static boolean isExpectedPassword(char[] password, byte[] salt, byte[] expectedHash) {
     	//value for password never changes?
          byte[] pwdHash = hash(password, salt);
-         System.out.println(" HASH OF PASS " + pwdHash + " EXPECTED PASS " + expectedHash);
          return Arrays.equals(pwdHash, expectedHash);
     }
 

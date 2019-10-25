@@ -1,5 +1,6 @@
 package ie.gmit.ds;
 
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +36,7 @@ public class PasswordClient {
 		StreamObserver<HashPassword> responseObserver = new StreamObserver<HashPassword>() {
 			@Override
 			public void onNext(HashPassword value) {
-				logger.info("user ID = "  + value.getUserId() +" Hashed pass = " + value.getPassword());
+				logger.info("user ID = "  + value.getUserId() +" Pass to hash = " + value.getPassword());
 			}
 
 			@Override
@@ -74,9 +75,14 @@ public class PasswordClient {
 	public static void main(String[] args) throws Exception {
 		PasswordClient pc = new PasswordClient("localhost", 50551);
 		try {
-			 pc.Hash(123, "12213231");
+			 Scanner sc = new Scanner(System.in);
+			 System.out.println("Enter user ID: ");
+			 int uID = sc.nextInt();
+			 System.out.println("Enter password: ");
+			 String password = sc.next();
+			 pc.Hash(uID, password);
 			// should return true problem with tostring 
-			pc.validate("test",Passwords.hash("test".toCharArray(), "test".getBytes()).toString(),Passwords.getNextSalt().toString());
+			pc.validate(password,Passwords.hash(password.toCharArray(),Passwords.getNextSalt()).toString(),Passwords.getNextSalt().toString());
  		} finally {
 			// Don't stop process, keep alive to receive async response
 			Thread.currentThread().join();
