@@ -13,4 +13,4 @@ Year 4 project using GRPC
 + ### IMPORTANT MAY HAVE TO USE MAVEN COMPILE ON POM TO BUILD RESOURCES FOLDER
 ## How it works
 + Client makes request to server and awaits response
-+ Server makes calls to the Passwords class and returns the response(String for hash, Boolean for validate) to the client
++ Server adds PasswordServiceImpl which makes calls to the Passwords class and server returns the response(String for hash, Boolean for validate) to the client
