@@ -32,7 +32,7 @@ public class PasswordClient {
 
 	// call all methods from password implementation get params from requirement
 	public String Hash(int userId, String password) {
-		HashPassword request = HashPassword.newBuilder().setUserId(userId).setPassword(password).build();
+ 		HashPassword request = HashPassword.newBuilder().setUserId(userId).setPassword(password).build();
 		StreamObserver<HashPassword> responseObserver = new StreamObserver<HashPassword>() {
 			@Override
 			public void onNext(HashPassword value) {
@@ -41,18 +41,38 @@ public class PasswordClient {
 
 			@Override
 			public void onError(Throwable t) {
+			}
+
+			@Override
+			public void onCompleted() {
+			}
+		};
+		StreamObserver<HashPasswordResponse> res = new StreamObserver<HashPasswordResponse>() {
+
+			@Override
+			public void onNext(HashPasswordResponse value) {
+				// TODO Auto-generated method stub
+				logger.info("user ID = "  + value.getUserId() +" Pass to hash = " + value.getHashedPassword() + " salt = " + value.getSalt());
+			}
+
+			@Override
+			public void onError(Throwable t) {
 				logger.info("ERROR: " + t.toString());
+				
 			}
 
 			@Override
 			public void onCompleted() {
 				logger.info("completed hashing");
+				
 			}
+			
 		};
-		asyncPasswordService.hashPass(request, responseObserver);
+		asyncPasswordService.hashPass(request, res);
 		try {
 			responseObserver.onNext(request);
- 			return responseObserver.toString();
+			responseObserver.onCompleted();
+  			return responseObserver.toString();
 		} catch (StatusRuntimeException ex) {
 			logger.log(Level.WARNING, "RPC failed: {0}", ex.getStatus());
 			return "ERROR";
