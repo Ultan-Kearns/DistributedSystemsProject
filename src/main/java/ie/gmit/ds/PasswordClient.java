@@ -51,10 +51,10 @@ public class PasswordClient {
 
 			@Override
 			public void onNext(HashPasswordResponse value) {
-				// TODO Auto-generated method stub
-				logger.info("user ID = "  + value.getUserId() +" Pass to hash = " + value.getHashedPassword() + " salt = " + value.getSalt());
+				//Print out hashed password
+				logger.info("user ID = "  + value.getUserId() +" Hashed pass = " + value.getHashedPassword() + " salt = " + value.getSalt());
 			}
-
+			
 			@Override
 			public void onError(Throwable t) {
 				logger.info("ERROR: " + t.toString());
@@ -103,7 +103,12 @@ public class PasswordClient {
 			 pc.Hash(uID, password);
 			// should return true problem with tostring 
 			pc.validate(password,Passwords.hash(password.toCharArray(),Passwords.getNextSalt()).toString(),Passwords.getNextSalt().toString());
- 		} finally {
+ 		}
+		catch(Exception e)
+		{
+			logger.info("EXCEPTION DID YOU START THE SERVER? Error: " + e.toString()  );
+		}
+		finally {
 			// Don't stop process, keep alive to receive async response
 			Thread.currentThread().join();
 		}

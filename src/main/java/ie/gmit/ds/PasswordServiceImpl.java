@@ -15,7 +15,7 @@ public class PasswordServiceImpl extends passwordImplBase {
 	public void validPass(ValidatePassword v, StreamObserver<com.google.protobuf.BoolValue> responseObserver) {
 		try {
 			byte[] b = v.getHashedPassword().getBytes();
-			// this evals to true try subin
+			// validate password here
 			responseObserver.onNext(BoolValue.newBuilder()
 					.setValue(Passwords.isExpectedPassword(v.getPassword().toCharArray(), v.getSalt().getBytes(),
 							Passwords.hash(v.getPassword().toCharArray(), v.getSalt().getBytes())))
@@ -31,11 +31,10 @@ public class PasswordServiceImpl extends passwordImplBase {
 	@Override
 	public void hashPass(HashPassword password,StreamObserver<HashPasswordResponse> responseObserver) {
  		try {
- 		// make hashed password
+ 		// make hashed password and salt
  		byte[] salt = Passwords.getNextSalt();
 		byte[] hashed = Passwords.hash(password.getPassword().toCharArray(), salt);
-		//re uild password with new hashed pass - can probably return string from here to server and then send to user
-		password = HashPassword.newBuilder().setUserId(password.getUserId()).setPassword(hashed.toString()).build();
+		//we will build the response with info from hashed password along with the salt and hashed variables
 		HashPasswordResponse pass = HashPasswordResponse.newBuilder().setUserId(password.getUserId()).setHashedPassword(hashed.toString()).setSalt(salt.toString()).build();
 		//return  the hashed pass response
 		responseObserver.onNext(pass);
@@ -43,7 +42,7 @@ public class PasswordServiceImpl extends passwordImplBase {
  		}
  		catch(Exception e)
  		{
- 			logger.info("Something went wrong when hashing the password");
+ 			logger.info("Something went wrong when hashing the password " + e.toString());
  		}
 }
 }
