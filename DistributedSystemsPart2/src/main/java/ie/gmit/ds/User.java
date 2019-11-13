@@ -9,8 +9,7 @@ public class User {
 	int userID;
 	String userName;
 	String email;
-	String salt;
-
+	String password;
 	@JsonProperty
 	public int getUserID() {
 		return userID;
@@ -27,15 +26,15 @@ public class User {
 	}
 
 	@JsonProperty
-	public String getSalt() {
-		return salt;
+	public String getPassword() {
+		return password;
 	}
 
-	public User(int userID, String userName, String email, String salt) {
+	public User(int userID, String userName, String email, String password) {
 		this.userID = userID;
 		this.userName = userName;
 		this.email = email;
-		this.salt = salt;
+		this.password = password;
 	}
 
 }
