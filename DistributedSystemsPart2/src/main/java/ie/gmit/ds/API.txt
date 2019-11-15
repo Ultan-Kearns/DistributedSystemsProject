@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  version: "1.00"
+  title: 'Distributed Systems Part 2 - G00343745'
+  description: 'Part 2 of module Distributed Systems'
+paths:
+  /users:
+    get:
+      description: Returns a list of users 
+      responses:
+        '200':
+          description: Successfully returned a list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Users'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+    post:
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: path
+          required: true
+          schema:
+            type: string
+      description: Allows user to add new user
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+      responses:
+          '200':
+            description: Successfully created a new user
+          '400':
+            description: Invalid request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:   
+                    message:
+                      type: string
+    delete:
+        description: Allows user to delte new user
+        parameters: 
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+        responses:
+          '204':
+            description: Successfully deleted a user
+          '400':
+            description: Invalid request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:   
+                    message:
+                      type: string        
+    put:
+      description: Updates a user using UID and updated user parameters as parameters
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+      responses:
+          '200':
+            description: Successfully created a new user
+          '400':
+            description: Invalid request
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:   
+                    message:
+                      type: string
+   
+                  
+  /users/{userID}:
+    get:
+      description: Obtain user information using ID as param
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully returned a user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  user_id:
+                    type: integer
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object 
+                properties:           
+                  message:
+                    type: string
+  
+components:
+  schemas:
+    Users:
+        type: object
+        required:
+          - user_id
+        properties:
+          username:
+              type: string
+          user_id:
+              type: integer
+          email:
+            type: string
+          password:
+            type: string
+          hashedPassword:
+            type: string
+          salt:
+            type: string
