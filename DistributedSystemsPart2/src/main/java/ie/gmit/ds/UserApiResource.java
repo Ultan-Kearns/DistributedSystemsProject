@@ -119,7 +119,7 @@ public class UserApiResource {
 				@Override
 				public void onCompleted() {
 				}
-			};
+			};	
 			StreamObserver<HashPasswordResponse> res = new StreamObserver<HashPasswordResponse>() {
 
 				@Override
@@ -151,17 +151,14 @@ public class UserApiResource {
 				return "ERROR";
 			}
 		}
-
-		private BoolValue validate(String password,String hashedPassword, String salt) {
-			ValidatePassword request = ValidatePassword.newBuilder().setPassword(password).setSalt(salt)
-					.setHashedPassword(hashedPassword).build();
-	        BoolValue result = BoolValue.newBuilder().setValue(false).build();
-	            result = syncPasswordService.validPass(request);
-	         if (result.getValue()) {
-	            logger.info("Successfully validated password ");
-	        } else {
-	            logger.warning("Failed to validate password " +  result);
-	        }
-	        return result;
+		@GET
+		@Path("/{uID}/{password}")
+		public String login(@PathParam("uID") Integer uID,@PathParam("password") String password) {
+			User user = usersMap.get(uID);
+			boolean isValid = Passwords.isExpectedPassword(user.getPassword().toCharArray(), user.getSalt().getBytes(), Passwords.hash(password.toCharArray(), user.getSalt().getBytes()));
+			if(isValid == true) 
+				return "Logged In";
+			else
+				return "Incorrect Username or Password";
 		}
 }
