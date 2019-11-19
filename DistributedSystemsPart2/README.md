@@ -11,4 +11,4 @@
     - Delete user - use delete: "localhost:9000/users/123"
     - Login user - use get: "localhost:9000/users/123/test"
 + Link to API: https://app.swaggerhub.com/apis/ultankearns/DistributedSystemsPart2/1.00
-+ Link to Github: https://github.com/Ultan-Kearns/DistributedSystemsProject/tree/master/DistributedSystemsPart2s
++ Link to Github: https://github.com/Ultan-Kearns/DistributedSystemsProject/tree/master/DistributedSystemsPart2
