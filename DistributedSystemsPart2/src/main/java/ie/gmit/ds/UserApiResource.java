@@ -27,23 +27,17 @@ import io.grpc.stub.StreamObserver;
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 public class UserApiResource {
-	int port = 50551;
 	private static passwordGrpc.passwordStub asyncPasswordService;
 	private passwordGrpc.passwordBlockingStub syncPasswordService;
 	private static final Logger logger = Logger.getLogger(PasswordClient.class.getName());
 	private final ManagedChannel channel;
-	String host = "localhost";
 	private HashMap<Integer, User> usersMap = new HashMap<Integer, User>();
 	User user;
-	public UserApiResource() { 
-		//params int userID, String userName, String email, String salt
-		//User testUser = new User(123, "test", "test@test.com", "pass",User.Hash(123, "pass").toString(),Passwords.getNextSalt().toString());
-		//User testUser2 = new User(231, "aaaaaaaaa", "aaaaaaaaaaaaaaaaaa@test.com", "pass",User.Hash(231, "pass").toString(),Passwords.getNextSalt().toString());
-		channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+	public UserApiResource(String host,int port) { 
+ 		channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 		asyncPasswordService = passwordGrpc.newStub(channel);
         syncPasswordService = passwordGrpc.newBlockingStub(channel);
-		//usersMap.put(testUser.userID, testUser);
-		//usersMap.put(testUser2.userID, testUser2);
+ 
 	}
 	//should return hashed password and salt
 	@GET
@@ -74,8 +68,9 @@ public class UserApiResource {
 	@Path("/{uID}/{userName}/{email}/{password}")
 	public Response addUser(@PathParam("uID") Integer uID,@PathParam("userName") String userName, @PathParam("email") String email,@PathParam("password") String password)
 	{
+		UserApiResource api = new UserApiResource("localhost", 50551);
 		//think problem is this is static
-		String test = Hash(uID, password).toString();
+		String test = api.hash(uID, password).toString();
 		user = new User(uID,userName,email,password,test,Passwords.getNextSalt().toString());
 		if(usersMap.get(uID) == null)
 		{
@@ -104,7 +99,7 @@ public class UserApiResource {
 			channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
 		}
 		// call all methods from password implementation get params from requirement
-		public static String Hash(int userId, String password) {
+		public String hash(int userId, String password) {
 	 		HashPassword request = HashPassword.newBuilder().setUserId(userId).setPassword(password).build();
 			StreamObserver<HashPassword> responseObserver = new StreamObserver<HashPassword>() {
 				@Override
@@ -154,11 +149,19 @@ public class UserApiResource {
 		@GET
 		@Path("/{uID}/{password}")
 		public String login(@PathParam("uID") Integer uID,@PathParam("password") String password) {
+			try {
 			User user = usersMap.get(uID);
-			boolean isValid = Passwords.isExpectedPassword(user.getPassword().toCharArray(), user.getSalt().getBytes(), Passwords.hash(password.toCharArray(), user.getSalt().getBytes()));
-			if(isValid == true) 
-				return "Logged In";
+			ValidatePassword request = ValidatePassword.newBuilder().setPassword(user.getPassword()).setSalt(user.getSalt())
+					.setHashedPassword(user.getHashedPassword()).build();
+			BoolValue result = BoolValue.newBuilder().setValue(false).build();
+            result = syncPasswordService.validPass(request);
+			if(result.getValue()) 
+				return "Logged In User " + user.userID;
 			else
 				return "Incorrect Username or Password";
+			}catch(Exception connectionError) {
+				return "Check if password server is running";
+			}
+		
 		}
 }

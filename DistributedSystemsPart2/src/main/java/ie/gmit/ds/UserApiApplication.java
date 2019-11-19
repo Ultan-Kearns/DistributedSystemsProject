@@ -10,7 +10,7 @@ public class UserApiApplication extends Application<UserApiConfig> {
 	}
 
 	public void run(UserApiConfig userApiConfig, Environment environment) throws Exception {
-		final UserApiResource resource = new UserApiResource();
+		final UserApiResource resource = new UserApiResource("localhost",50551);
 		environment.jersey().register(resource);
 	}
-}
+} 
