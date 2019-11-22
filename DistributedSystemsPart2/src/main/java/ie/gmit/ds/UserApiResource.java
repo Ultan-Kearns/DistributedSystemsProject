@@ -112,19 +112,17 @@ public class UserApiResource {
  		HashPassword request = HashPassword.newBuilder().setUserId(userId).setPassword(password).build();
  		StreamObserver<HashPassword> responseObserver = new StreamObserver<HashPassword>() {
 			
-			@Override
+			 
 			public void onNext(HashPassword value) {
 				logger.info("TEST " + value.getPassword());
 				
 			}
-			
-			@Override
+			 
 			public void onError(Throwable t) {
 				logger.info("Cannot reach server");
 				
 			}
-			
-			@Override
+	 
 			public void onCompleted() {
 				logger.info("Completed");
 			}
