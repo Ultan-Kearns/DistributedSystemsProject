@@ -27,7 +27,7 @@ import io.grpc.stub.StreamObserver;
 
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserApiResource { 
+public class UserApiResource {
 	private static passwordGrpc.passwordStub asyncPasswordService;
 	private passwordGrpc.passwordBlockingStub syncPasswordService;
 	private static final Logger logger = Logger.getLogger(UserApiResource.class.getName());
@@ -111,24 +111,22 @@ public class UserApiResource {
 	public String Hash(int userId, String password) {
  		HashPassword request = HashPassword.newBuilder().setUserId(userId).setPassword(password).build();
  		StreamObserver<HashPassword> responseObserver = new StreamObserver<HashPassword>() {
-			
-			@Override
+
 			public void onNext(HashPassword value) {
 				logger.info("TEST " + value.getPassword());
-				
+
 			}
-			
-			@Override
+
 			public void onError(Throwable t) {
 				logger.info("Cannot reach server");
-				
+
 			}
-			
-			@Override
+
+
 			public void onCompleted() {
 				logger.info("Completed");
 			}
-		}; 
+		};
 		syncPasswordService.hashPass(request);
 		try {
   			return responseObserver.toString();
