@@ -2,7 +2,7 @@
 # Instructions and links below
 + Instructions to run:
  - Start GRPC password server using "java -jar DistributedSystemsPart1"
- - Start User Account Service using "java -jar target/DistributedSystemsPart2-0.0.1-SNAPSHOT.jar server target/userApiConfig.yaml"
+ - Start User Account Service using "java -jar target/DistributedSystemsPart2-0.0.1-SNAPSHOT.jar server userApiConfig.yaml"
  - Start post man and run the following:
     - Create new user - use post: "localhost:9000/users/123/test/test/test"
     - Get all users - use get: "localhost:9000/users/"
