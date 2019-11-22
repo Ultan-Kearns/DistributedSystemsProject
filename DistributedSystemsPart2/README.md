@@ -12,3 +12,5 @@
     - Login user - use get: "localhost:9000/users/123/test"
 + Link to API: https://app.swaggerhub.com/apis/ultankearns/DistributedSystemsPart2/1.00
 + Link to Github: https://github.com/Ultan-Kearns/DistributedSystemsProject/tree/master/DistributedSystemsPart2
+## NOTES
++ If UAC is not connected to server HashedPassword will be blank but user will be submitted
