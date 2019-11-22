@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAnyElement;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,31 +27,37 @@ public class User {
 	String hashedPassword,salt;
 	@XmlAnyElement
 	@JsonProperty
+	@NotNull
 	public int getUserID() {
 		return userID;
 	}
 	@XmlAnyElement
 	@JsonProperty
+	@NotNull
 	public String getUserName() {
 		return userName;
 	}
 	@XmlAnyElement
 	@JsonProperty
+	@NotNull
 	public String getEmail() {
 		return email;
 	}
 	@XmlAnyElement
 	@JsonProperty
+	@NotNull
 	public String getPassword() {
 		return password;
 	}
 	@XmlAnyElement
 	@JsonProperty
+	@NotNull
 	public String getHashedPassword() {
 		return hashedPassword;
 	}
 	@XmlAnyElement
 	@JsonProperty
+	@NotNull
 	public String getSalt() {
 		return salt;
 	}

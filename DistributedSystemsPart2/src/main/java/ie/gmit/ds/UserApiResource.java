@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.google.protobuf.BoolValue;
 
+import ie.gmit.ds.passwordGrpc.passwordStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
@@ -34,19 +35,19 @@ public class UserApiResource {
 	private HashMap<Integer, User> usersMap = new HashMap<Integer, User>();
 	User user;
 
-
+	//establishes initial connection
 	public UserApiResource() {
 		channel = ManagedChannelBuilder.forAddress("localhost", 50551).usePlaintext().build();
 		asyncPasswordService = passwordGrpc.newStub(channel);
 		syncPasswordService = passwordGrpc.newBlockingStub(channel);
 	}
 
-	// should return hashed password and salt
+	//Gets all users from usermap
 	@GET
 	public Collection<User> getUsers() {
 		return usersMap.values();
 	}
-
+	//takes UID as input parameter returns single user
 	@GET
 	@Path("/{uID}")
 	public Response getSingleUser(@PathParam("uID") Integer uID) {
@@ -56,7 +57,7 @@ public class UserApiResource {
 		else
 			return Response.ok(user).build();
 	}
-
+	//takes UID as parameter and deletes a single user
 	@DELETE
 	@Path("/{uID}")
 	public Response deleteSingleUser(@PathParam("uID") Integer uID) {
@@ -68,21 +69,26 @@ public class UserApiResource {
 		 return Response.status(Status.NO_CONTENT).build();
 	}
 
-	// int userID, String userName, String email, String password
+	// Adds user by getting parameters from the URL calls hash password for the hash
 	@POST
 	@Path("/{uID}/{userName}/{email}/{password}")
 	public Response addUser(@PathParam("uID") Integer uID, @PathParam("userName") String userName,
 			@PathParam("email") String email, @PathParam("password") String password) {
-	
-		String test = Hash(uID, password).toString();
-		user = new User(uID, userName, email, password, test, Passwords.getNextSalt().toString());
+		String hashedPass = "";
+		try {
+		hashedPass = Hash(uID, password).toString();
+		}
+		catch(Exception connectionException) {
+			logger.info("Failed to connect to the server");
+		}
+		user = new User(uID, userName, email, password, hashedPass, Passwords.getNextSalt().toString());
 		if (usersMap.get(uID) == null) {
 			usersMap.put(uID, user);
 			return Response.ok(user).build();
 		} else
 			return Response.status(Status.CONFLICT).build();
 	}
-
+	//This updates the user by using a PUT, PUT allows us to update or overwrite existing info
 	@PUT
 	@Path("/{uID}/{userName}/{email}/{password}")
 	public Response updateUser(@PathParam("uID") Integer uID, @PathParam("userName") String userName,
@@ -100,77 +106,57 @@ public class UserApiResource {
 		channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
 	}
 
-	// Hash method - calls the server to hash the User Password - calls server
+	/* Hash method - calls the server to hash the User Password - calls server
+	This is used to call the server from post method to hash the users password*/
 	public String Hash(int userId, String password) {
  		HashPassword request = HashPassword.newBuilder().setUserId(userId).setPassword(password).build();
-		StreamObserver<HashPassword> responseObserver = new StreamObserver<HashPassword>() {
+ 		StreamObserver<HashPassword> responseObserver = new StreamObserver<HashPassword>() {
+			
 			@Override
 			public void onNext(HashPassword value) {
-				logger.info("user ID = "  + value.getUserId() +" Pass to hash = " + value.getPassword());
-			}
-
-			@Override
-			public void onError(Throwable t) {
-				logger.info("ERROR IN RESPONSE");
-			}
-
-			@Override
-			public void onCompleted() {
-				logger.info("RESPONSE COMPLETED");
-			}
-		};
-		StreamObserver<HashPasswordResponse> res = new StreamObserver<HashPasswordResponse>() {
-
-			@Override
-			public void onNext(HashPasswordResponse value) {
-				//Print out hashed password
-				logger.info("user ID = "  + value.getUserId() +" Hashed pass = " + value.getHashedPassword() + " salt = " + value.getSalt());
+				logger.info("TEST " + value.getPassword());
+				
 			}
 			
 			@Override
 			public void onError(Throwable t) {
-				logger.info("ERROR: " + t.toString());
-				
-			}
-
-			@Override
-			public void onCompleted() {
-				logger.info("completed hashing");
+				logger.info("Cannot reach server");
 				
 			}
 			
-		};
-		asyncPasswordService.hashPass(request, res);
+			@Override
+			public void onCompleted() {
+				logger.info("Completed");
+			}
+		}; 
+		syncPasswordService.hashPass(request);
 		try {
-			responseObserver.onNext(request);
-			responseObserver.onCompleted();
   			return responseObserver.toString();
 		} catch (StatusRuntimeException ex) {
 			logger.log(Level.WARNING, "RPC failed: {0}", ex.getStatus());
-			return "ERROR";
+			return "ERROR is server connected?";
 		}
 	}
 
-	//this calls server and logs in
+	//this calls server to check if password is valid then compares userpass with pass in maps
 	@GET
 	@Path("/{uID}/{password}")
-	public String login(@PathParam("uID") Integer uID, @PathParam("password") String password) {
+	public Response login(@PathParam("uID") Integer uID, @PathParam("password") String password) {
 		try {
 			User user = usersMap.get(uID);
 			ValidatePassword request = ValidatePassword.newBuilder().setPassword(user.getPassword())
 					.setSalt(user.getSalt()).setHashedPassword(user.getHashedPassword()).build();
 			BoolValue result = BoolValue.newBuilder().setValue(false).build();
-			if(usersMap.get(uID) != null)
-				return "User doesn't exist";
+			if(usersMap.get(uID) == null)
+				return Response.status(Status.NOT_FOUND).build();
 			result = syncPasswordService.validPass(request);
 			//check if password is valid and user password = param password
-			logger.info("USER PASS " + user.password  + " " + usersMap.get(uID).password);
-			if (result.getValue() && user.password == usersMap.get(uID).password)
-				return "Logged In User " + user.userID;
+ 			if (result.getValue() && usersMap.get(uID).getPassword().equals(password))
+				return Response.ok(user).build();
 			else
-				return "Incorrect Username or Password";
+				return  Response.status(Status.FORBIDDEN).build();
 		} catch (Exception connectionError) {
-			return "Check if password server is running";
+			return  Response.status(Status.GATEWAY_TIMEOUT).build();
 		}
 	}
 }
